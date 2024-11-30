@@ -1,0 +1,12 @@
+# 仮想環境
+env/
+# Jupyter Notebookのチェックポイント
+.ipynb_checkpoints/
+# Pythonキャッシュ
+__pycache__/
+*.pyc
+*.pyo
+# その他不要なファイル
+model/
+blog_app/env/Lib/site-packages/torch/lib/torch_cpu.dll
+blog_app/env/Lib/site-packages/torch/lib/dnnl.lib
