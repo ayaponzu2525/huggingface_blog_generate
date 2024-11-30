@@ -4,16 +4,22 @@ from transformers import pipeline
 app = Flask(__name__)
 
 # GPTモデルの読み込み（Hugging Faceから）
-model = pipeline('text-generation', model='gpt2')  # 修正後のモデル名
-  # GPT-2の場合
+model = pipeline('text-generation', model='gpt2')  # GPT-2の場合
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         topic = request.form['topic']
-        # モデルを使って記事を生成
-        article = model(f"Write an article about {topic}", max_length=500)[0]['generated_text']
+        # ブログ記事の構成を指定
+        prompt = f"Write a blog post about {topic}. 日常日記のようなストーリー"
+        
+        # 記事生成
+        article = model(prompt, max_length=800)[0]['generated_text']
+        
+        # プロンプトは表示せずに記事だけをテンプレートに渡す
         return render_template('index.html', article=article)
+    
+    # 初回アクセス時は記事なしで表示
     return render_template('index.html')
 
 if __name__ == '__main__':

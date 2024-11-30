@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            overflow: hidden; /* 全体スクロールを制限 */
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 60px; /* 固定ヘッダー分のスペース */
+            overflow-y: auto; /* 内容が長い場合にスクロールを有効にする */
+            height: calc(100vh - 60px); /* ヘッダーを考慮した高さ */
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            position: fixed; /* ヘッダーを固定 */
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 20px 0;
+            margin: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        form {
+            margin: 20px 0;
+            text-align: center;
+        }
+        label {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 60%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .article {
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .article h2 {
+            color: #333;
+        }
+        .article p {
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate an Article</h1> <!-- 固定タイトル -->
+    <div class="container">
+        <form method="POST">
+            <label for="topic">Enter Topic:</label>
+            <input type="text" id="topic" name="topic" required>
+            <button type="submit">Generate</button>
+        </form>
+
+        {% if article %}
+        <div class="article">
+            <h2>Generated Article:</h2>
+            <p>{{ article }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
