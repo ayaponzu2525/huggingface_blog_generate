@@ -11,7 +11,7 @@ def home():
     if request.method == 'POST':
         topic = request.form['topic']
         # ブログ記事の構成を指定
-        prompt = f"Write a blog post about {topic}. 日常日記のようなストーリー"
+        prompt = f"Write a blog post about {topic}. Like a daily diary"
         
         # 記事生成
         article = model(prompt, max_length=800)[0]['generated_text']
